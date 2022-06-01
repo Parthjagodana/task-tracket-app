@@ -1,0 +1,119 @@
+$green: #c7efcf;
+$dark-green: darken($green, 30%);
+$dark-grey: #333745;
+$light-grey: aliceblue;
+$white: #ffffff;
+
+.main {
+  text-align: center;
+  .container {
+    background-color: $white;
+    box-shadow: 0px 6px 15px 0px rgba(207, 211, 218, 0.35);
+    margin: 0 auto;
+    width: 550px;
+    padding: 60px 35px;
+    margin-top: 70px;
+    border-radius: 10px;
+
+    .dateSection {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      font-size: 16px;
+      h2 {
+        font-weight: 500;
+        color: grey;
+      }
+      .day,
+      .weekday {
+        flex: 0;
+      }
+      .day {
+        font-size: 50px;
+      }
+      .center {
+        flex: 1;
+        padding-left: 10px;
+        .month {
+          font-weight: 700;
+        }
+      }
+      .weekday {
+        text-align: right;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+    }
+
+    .todolist {
+      margin-top: 30px;
+
+      .todo {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 5px;
+        border-bottom: 1px solid #d5d5d5;
+
+        .todoText {
+          flex-grow: 1;
+          // height: 40px;
+          // font-size: 20px;
+          border: none;
+          text-align: left;
+          h5 {
+            font-weight: 500;
+            margin: 0;
+          }
+          span {
+            font-size: 13px;
+          }
+        }
+        .check {
+          height: 40px;
+          // width: 40px;
+          display: flex;
+          justify-content: center;
+          margin-left: 80px;
+          border-radius: 100%;
+          cursor: pointer;
+
+          .fill {
+            height: 28px;
+            width: 28px;
+            align-self: center;
+            border-radius: 100%;
+            background-color: $green;
+            transition: all 0.5s ease;
+          }
+
+          .record, .stop, .finish {
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+  }
+
+  .addButton {
+    background-color: $green;
+    color: $dark-green;
+    font-size: 35px;
+    width: 60px;
+    height: 60px;
+    margin-top: -40px;
+    align-self: center;
+    border-radius: 100%;
+    border: none;
+    box-shadow: 0px 6px 15px 0px rgba(207, 211, 218, 0.35);
+    cursor: pointer;
+  }
+}
+
+.modal-body {
+  .select-time {
+    display: flex;
+    .start-time {
+      margin-right: 10px;
+    }
+  }
+}

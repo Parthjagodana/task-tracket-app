@@ -1,0 +1,94 @@
+<div class="main">
+  <div class="container">
+    <div class="dateSection">
+      <h2>Task Tracker</h2>
+    </div>
+
+    <ul class="todolist" id="todolist">
+      <li class="todo" *ngFor="let us of tasks">
+        <div class="todoText" id="todoText">
+          <h5>{{ us.title }}</h5>
+          <span *ngIf="us._id == task_id">{{ currentTimeTracked }}</span>
+          <span *ngIf="us._id != task_id">{{ us.total_time || '00:00:00' }}</span>
+        </div>
+        <div class="check">
+          <button type="button" *ngIf="us._id != task_id" (click)="timerStart(us._id)" class="btn btn-primary record">record</button>
+          <button type="button"*ngIf="us._id == task_id" (click)="timerStop(us._id)" class="btn btn-warning stop">stop</button>
+          <button type="button" class="btn btn-danger"><i class="fa fa-trash" (click)="deleteTask(us._id)"></i></button>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <button
+    type="button"
+    class="addButton"
+    data-bs-toggle="modal"
+    data-bs-target="#createTaskModal"
+  >
+    +
+  </button>
+</div>
+
+<!-- Create Task Model Start -->
+<div
+  #closebutton
+  class="modal fade"
+  id="createTaskModal"
+  tabindex="-1"
+  aria-labelledby="createTaskModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createTaskModalLabel">Create Task</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form [formGroup]="createTaskForm" (ngSubmit)="onTaskCreate()">
+        <div class="modal-body">
+          <div class="mb-3 form-group">
+            <label for="task-name" class="col-form-label">Task:</label>
+            <input
+              formControlName="task_title"
+              type="text"
+              class="form-control"
+              id="task-name"
+              autocomplete="off"
+              required
+            />
+            <div
+              *ngIf="
+                submitted &&
+                createTaskForm.controls['task_title'].invalid &&
+                (createTaskForm.controls['task_title'].dirty ||
+                  createTaskForm.controls['task_title'].touched)
+              "
+              style="margin-bottom: 5px; color: red"
+            >
+              <div *ngIf="createTaskForm.controls['task_title']">
+                Task Title is required.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button class="btn btn-primary">Save Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Create Task Model End -->
